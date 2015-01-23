@@ -51,7 +51,7 @@ angular.module("ngDraggable", [])
                     var _pressTimer = null;
 
                     var onDragSuccessCallback = $parse(attrs.ngDragSuccess) || null;
-                    var onDragStartCallback = $parse(attrs.ngDragStart) || null;
+                    var onDragBeginCallback = $parse(attrs.ngDragBegin) || null;
 
                     var initialize = function () {
                         element.attr('draggable', 'false'); // prevent native drag
@@ -146,7 +146,7 @@ angular.module("ngDraggable", [])
                         $document.on(_moveEvents, onmove);
                         $document.on(_releaseEvents, onrelease);
                         scope.$apply(function () {
-                            onDragStartCallback(scope);
+                            onDragBeginCallback(scope);
                         });
                         $rootScope.$broadcast('draggable:start', {x:_mx, y:_my, tx:_tx, ty:_ty, event:evt, element:element, data:_data});
                     };
